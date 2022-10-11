@@ -4,6 +4,7 @@ import React, { useRef, useState, useContext } from 'react'
 import Button from '../../UI/button'
 import AuthContext from '../../Context/authContext'
 import { useHistory } from 'react-router-dom'
+import '../../styles/authForm.css'
 
 const AuthForm = () => {
 	const emailInputRef = useRef()
@@ -93,7 +94,7 @@ const AuthForm = () => {
 
 	return (
 		<>
-			{islogin ? <h1>Se connecter</h1> : <h1>Créer un compte</h1>}
+			{islogin ? <h1 className='authForm-title'>Se connecter</h1> : <h1 className='authForm-title'>Créer un compte</h1>}
 			<form onSubmit={submithandler}>
 				<label htmlFor="email">Votre email</label>
 				<input
@@ -116,7 +117,7 @@ const AuthForm = () => {
 						{islogin ? 'Se Connecter' : 'Créer un compte'}
 					</Button>
 				)}
-				<p onClick={toggleAuthHandler}>
+				<p onClick={toggleAuthHandler} className='click-button'>
 					{islogin ? 'Créer un compte' : 'Se connecter'}
 				</p>
 				{isloading && <p>En cours de chargement</p>}

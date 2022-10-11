@@ -2,6 +2,7 @@
 import React, {useContext} from 'react'
 import { Link } from 'react-router-dom'
 import AuthContext from '../../Context/authContext'
+import '../../styles/header.css'
 
 
 const Header = () => {
@@ -13,11 +14,11 @@ const Header = () => {
 	return (
 		<header>
 			<nav>
-				<ul>
+				<ul className='container'>
 					{isLoggedIn && <Link to="/reseaux">
 						<li>Réseaux</li>
 					</Link>}
-					{isLoggedIn && <li onClick={authCtx.logout}>Se déconnecter</li>}
+					{isLoggedIn && <li className='click' onClick={authCtx.logout}>Se déconnecter</li>}
 				</ul>
 			</nav>
 		</header>

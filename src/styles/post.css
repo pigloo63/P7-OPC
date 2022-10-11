@@ -1,0 +1,10 @@
+.reverse{
+    display: flex;
+    flex-direction: column-reverse;
+}
+
+.container-post{
+    border: 1px solid black;
+    margin: 15px;
+    padding: 10px;
+}

@@ -55,9 +55,9 @@ const Post = () => {
 						<PostForm onRefresh={onRefresh} data={data} />
 					)}
 					<div>
-						<div>
+						<div className='reverse'>
 							{data.map((post) => (
-								<div key={post._id}>
+								<div key={post._id} className='container-post'>
 									<p>{post.message}</p>
 
 									<img
@@ -91,7 +91,7 @@ const Post = () => {
 					</div>
 				</section>
 			)}
-			{!isLoggedIn && <p>Vous êtes déconnecté</p>}
+			{!isLoggedIn && <p>Vous êtes déconnecté ou vous venez de créer votre compte</p>}
 			{!isLoggedIn && (
 				<p onClick={() => historyHandler()}>
                     Retourné à la page de conexion

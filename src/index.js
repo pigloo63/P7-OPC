@@ -6,7 +6,7 @@ import { BrowserRouter } from 'react-router-dom'
 
 import App from './App'
 import { AuthContextProvider } from './Context/authContext'
-import './index.css'
+import '../src/styles/index.css'
 
 
 const container = document.getElementById('root')
