@@ -13,12 +13,13 @@ const Header = () => {
 	
 	return (
 		<header>
+			<img src='./img/icon-left-font.png' alt='logo-grouponania' className='logo'/>
 			<nav>
-				<ul className='container'>
+				<ul className='container-header'>
 					{isLoggedIn && <Link to="/reseaux">
-						<li>Réseaux</li>
+						<li className='header-list'>Réseaux</li>
 					</Link>}
-					{isLoggedIn && <li className='click' onClick={authCtx.logout}>Se déconnecter</li>}
+					{isLoggedIn && <li className='header-list' onClick={authCtx.logout}>Se déconnecter</li>}
 				</ul>
 			</nav>
 		</header>

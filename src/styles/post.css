@@ -1,10 +1,36 @@
+.title{
+    color: #FD2D01;
+}
+
 .reverse{
     display: flex;
     flex-direction: column-reverse;
 }
 
+.container{
+    max-width: 1400px;
+    margin: auto;
+}
+
 .container-post{
-    border: 1px solid black;
-    margin: 15px;
+    border: 1px solid #4E5166;
+    border-radius: 30px;
+    box-shadow: 10px 5px 5px  #4E5166;
+    margin: auto;
+    margin-top: 15px;
+    margin-bottom: 15px;
     padding: 10px;
+    width: 50%;
+    box-sizing: border-box;
+}
+
+.component-style{
+    box-sizing: border-box;
+    margin: auto;
+    justify-content: space-between;
+    display: flex;
+}
+
+.image-style{
+    margin: auto;
 }

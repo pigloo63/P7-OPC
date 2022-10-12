@@ -49,49 +49,59 @@ const Post = () => {
 	return (
 		<div>
 			{isLoggedIn && (
-				<section>
-					{isLoggedIn && <h1>LE RESEAU GROUPOMANIA</h1>}
+				<section className='container'>
+					{isLoggedIn && (
+						<h1 className="title">LE RESEAU GROUPOMANIA</h1>
+					)}
 					{isLoggedIn && (
 						<PostForm onRefresh={onRefresh} data={data} />
 					)}
 					<div>
-						<div className='reverse'>
+						<div className="reverse">
 							{data.map((post) => (
-								<div key={post._id} className='container-post'>
+								<div key={post._id} className="container-post">
 									<p>{post.message}</p>
 
-									<img
+									{post.imageUrl && <img
 										src={post.imageUrl}
 										alt="image utilisateur"
 										height={'200px'}
-									/>
-									<LikePost
-										id={post._id}
-										userId={post.userId}
-										like={post.likes}
-										onRefresh={onRefresh}
-									/>
-									{(userId === post.userId || isAdmin) && (
-										<ModifyPost
+										className='image-style'
+									/>}
+									<div className='component-style'>
+										<LikePost
 											id={post._id}
-											data={data}
+											userId={post.userId}
+											like={post.likes}
 											onRefresh={onRefresh}
 										/>
-									)}
-									{(userId === post.userId || isAdmin) && (
-										<DelePost
-											id={post._id}
-											data={data}
-											onRefresh={onRefresh}
-										/>
-									)}
+										{(userId === post.userId ||
+                                            isAdmin) && (
+											<ModifyPost
+												id={post._id}
+												data={data}
+												imageUrl={post.imageUrl}
+												onRefresh={onRefresh}
+											/>
+										)}
+										{(userId === post.userId ||
+                                            isAdmin) && (
+											<DelePost
+												id={post._id}
+												data={data}
+												onRefresh={onRefresh}
+											/>
+										)}
+									</div>
 								</div>
 							))}
 						</div>
 					</div>
 				</section>
 			)}
-			{!isLoggedIn && <p>Vous êtes déconnecté ou vous venez de créer votre compte</p>}
+			{!isLoggedIn && (
+				<p>Vous êtes déconnecté ou vous venez de créer votre compte</p>
+			)}
 			{!isLoggedIn && (
 				<p onClick={() => historyHandler()}>
                     Retourné à la page de conexion

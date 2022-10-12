@@ -95,7 +95,7 @@ const AuthForm = () => {
 	return (
 		<>
 			{islogin ? <h1 className='authForm-title'>Se connecter</h1> : <h1 className='authForm-title'>Créer un compte</h1>}
-			<form onSubmit={submithandler}>
+			<form onSubmit={submithandler} className='authForm'>
 				<label htmlFor="email">Votre email</label>
 				<input
 					type="email"

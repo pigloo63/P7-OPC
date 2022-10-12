@@ -4,8 +4,9 @@
 import React, { useContext, useRef, useState, useEffect, useLayoutEffect } from 'react'
 import AuthContext from '../../Context/authContext'
 import Button from '../../UI/button'
+import '../../styles/modifyPost.css'
 
-const ModifyPost = ({ id, onRefresh, data }) => {
+const ModifyPost = ({ id, onRefresh, data, imageUrl }) => {
 	const [updatePost, setUpdatePost] = useState(data)
 	const [modificationPost, setModificationPost] = useState(false)
 	const [file, setFile] = useState(null)
@@ -19,6 +20,8 @@ const ModifyPost = ({ id, onRefresh, data }) => {
 	const handlePicture = (event) => {
 		setFile(event.target.files[0])
 	}
+
+
 
 	const submitHandler = (e) => {
 		e.preventDefault()
@@ -64,29 +67,29 @@ const ModifyPost = ({ id, onRefresh, data }) => {
 		onRefresh()
 	},[updatePost])
 
-
 	return (
-		<div>
+		<div className='container-modify'>
 			{modificationPost && (
 				<section>
-					<form onSubmit={submitHandler}>
-						<label htmlFor="message">Votre nouveaux message</label>
+					<form onSubmit={submitHandler}
+						className='modify-form'>
 						<input
 							type="text"
 							id="message"
 							name="message"
 							ref={messageInputRef}
+							placeholder='Nouveau message'
 							required
+							className='modify-text-field'
 						/>
-						<label htmlFor="image">Votre image</label>
-						<input
+						{imageUrl && <input
 							type="file"
 							id="file"
 							name="file"
 							onChange={(event) => handlePicture(event)}
-						/>
+						/>}
 						{<Button
-							type={'submit'}>
+							type={'submit'} onClick={modificationHandler}>
                             Publier
 						</Button>}
 					</form>

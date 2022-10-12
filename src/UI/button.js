@@ -5,7 +5,7 @@ import React from 'react'
 const Button = (props) => {
 	return(
 		<button
-			type={props.type || 'button'}
+			type={props.type || 'button'} className='btn-type'
 			onClick={props.onClick}
 		>{props.children}</button>
 	)

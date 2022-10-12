@@ -4,6 +4,7 @@
 import React, { useState, useRef, useContext, useEffect, useLayoutEffect} from 'react'
 import AuthContext from '../../Context/authContext'
 import Button from '../../UI/button'
+import '../../styles/postForm.css'
 
 
 const PostForm = ({ onRefresh, data }) => {
@@ -67,21 +68,23 @@ const PostForm = ({ onRefresh, data }) => {
 		<div>
 			{isLoggedIn && (
 				<section>
-					<form onSubmit={submitHandler}>
-						<label htmlFor="message">Votre message</label>
+					<form onSubmit={submitHandler} className='post-form'>
+						<h2>Votre nouveau commentaire</h2>
 						<input
 							type="text"
 							id="message"
 							name="message"
 							ref={messageInputRef}
+							placeholder="Votre message"
 							required
+							className='input-field'
 						/>
-						<label htmlFor="file">Votre image</label>
 						<input
 							type="file"
 							id="file"
 							name="file"
 							onChange={(event) => handlePicture(event)}
+
 						/>
 						<Button type={'submit'}>Publier</Button>
 					</form>

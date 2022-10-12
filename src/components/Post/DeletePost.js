@@ -43,7 +43,7 @@ const DelePost = ({ id, data, onRefresh }) => {
 	return (
 		<div>
 			<form onSubmit={deleteHandler}>
-				<Button type={'submit'}>Supprimer</Button>
+				<Button type={'submit'} className='btn-type'>Supprimer</Button>
 			</form>
 		</div>
 	)
