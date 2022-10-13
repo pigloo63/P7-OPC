@@ -10,6 +10,7 @@ import LikePost from '../components/Post/likePost'
 import '../styles/post.css'
 
 const Post = () => {
+	console.log('coucou')
 	const authCtx = useContext(AuthContext)
 	const [data, setData] = useState([])
 
@@ -81,6 +82,7 @@ const Post = () => {
 												id={post._id}
 												data={data}
 												imageUrl={post.imageUrl}
+												message={post.message}
 												onRefresh={onRefresh}
 											/>
 										)}

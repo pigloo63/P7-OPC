@@ -6,10 +6,11 @@ import AuthContext from '../../Context/authContext'
 import Button from '../../UI/button'
 import '../../styles/modifyPost.css'
 
-const ModifyPost = ({ id, onRefresh, data, imageUrl }) => {
+const ModifyPost = ({ id, onRefresh, data, imageUrl, message }) => {
 	const [updatePost, setUpdatePost] = useState(data)
 	const [modificationPost, setModificationPost] = useState(false)
 	const [file, setFile] = useState(null)
+	const [messageSave, setMessageSave] = useState()
 
 	const authCtx = useContext(AuthContext)
 
@@ -22,9 +23,7 @@ const ModifyPost = ({ id, onRefresh, data, imageUrl }) => {
 	}
 
 
-
-	const submitHandler = (e) => {
-		e.preventDefault()
+	const submitHandler = () => {
 
 		const enteredMessage = messageInputRef.current.value
 
@@ -56,16 +55,24 @@ const ModifyPost = ({ id, onRefresh, data, imageUrl }) => {
 			}
 		}
 		fetchModify()
+		
 	}
+
+	useLayoutEffect(() => {
+		onRefresh()
+	},[updatePost])
 
 	//Modification des données sur la page
 	const modificationHandler = () => {
 		setModificationPost((modifyPost) => !modifyPost)
 	}
 
-	useLayoutEffect(() => {
-		onRefresh()
-	},[updatePost])
+	const returnModificationHandler = () => {
+		if(message != messageInputRef){
+			submitHandler()
+			setModificationPost(false)
+		}
+	}
 
 	return (
 		<div className='container-modify'>
@@ -88,15 +95,15 @@ const ModifyPost = ({ id, onRefresh, data, imageUrl }) => {
 							name="file"
 							onChange={(event) => handlePicture(event)}
 						/>}
-						{<Button
-							type={'submit'} onClick={modificationHandler}>
+						<Button
+							type={'submit'} onClick={returnModificationHandler}>
                             Publier
-						</Button>}
+						</Button>
 					</form>
 				</section>
 			)}
 			{!modificationPost && (
-				<Button type={'submit'} onClick={modificationHandler}>
+				<Button onClick={modificationHandler}>
                     Modifier
 				</Button>
 			)}
