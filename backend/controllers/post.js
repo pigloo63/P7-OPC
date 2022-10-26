@@ -25,7 +25,7 @@ exports.createPost = (req, res) => {
 			res.status(201).json({ message: 'post enregistré !' })
 		})
 		.catch(() => {
-			res.status(400).json({ error: 'post non créé' })
+			res.status(500).json({ error: 'post non créé' })
 		})
 }
 
@@ -55,7 +55,7 @@ exports.updatePost = (req, res) => {
 				.catch((error) => res.status(404).json({ error }))
 		})
 		.catch(() => {
-			res.status(400).json({ error: 'le post ne se met pas à jour' })
+			res.status(500).json({ error: 'le post ne se met pas à jour' })
 		})
 }
 
@@ -88,14 +88,14 @@ exports.deletePost = (req, res) => {
 					)
 					.catch(() =>
 						res
-							.status(404)
+							.status(500)
 							.json({ error: 'le post ne se supprime pas' })
 					)
 			}
 		})
 		.catch(() =>
 			res
-				.status(400)
+				.status(500)
 				.json({ error: 'ne parvient pas à trouver l élément' })
 		)
 }
@@ -165,5 +165,5 @@ exports.getAllPost = (req, res) => {
 	postHelper
 		.findAllPost()
 		.then((post) => res.status(200).json(post))
-		.catch((error) => res.status(400).json({ error }))
+		.catch((error) => res.status(404).json({ error }))
 }

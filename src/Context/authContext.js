@@ -5,7 +5,7 @@ import PropType from 'prop-types'
 const defaultValue = {
 	token: '',
 	userId: null,
-	userAdmin: 0,
+	userAdmin: false,
 	userIsLoggedIn: false,
 	login: () => {},
 	logout: () => {}
@@ -16,14 +16,15 @@ const AuthContext = createContext(defaultValue)
 //controle si les élements sont dans le localStorage
 const tokenStorage = localStorage.getItem('token')
 const userIdStorage = localStorage.getItem('userId')
-const adminLocalStorage = localStorage.getItem('userAdmin')
-
+//JSON.stringingify et .parse va permettre d'envoyer sous forme de booléen
+const adminLocalStorage = JSON.parse(localStorage.getItem('userAdmin'))
 
 export const AuthContextProvider = (props) => {
 
 	const [token, setToken] = useState(tokenStorage)
 	const [userId, setUserId] = useState(userIdStorage)
 	const [userAdmin, setUserAdmin] = useState(adminLocalStorage)
+	console.log(userAdmin)
 
 	const loginHandler = (token, userId, userAdmin) => {
 		setToken(token)
@@ -31,13 +32,13 @@ export const AuthContextProvider = (props) => {
 		setUserAdmin(userAdmin)
 		localStorage.setItem('token', token)
 		localStorage.setItem('userId', userId)
-		localStorage.setItem('userAdmin', userAdmin)
+		localStorage.setItem('userAdmin', JSON.stringify(userAdmin))
 	}
 
 	const logoutHandler = () => {
 		setToken(null)
 		setUserId(null)
-		setUserAdmin(null)
+		setUserAdmin(0)
 		localStorage.clear()
 	}
 

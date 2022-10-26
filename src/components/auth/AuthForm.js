@@ -71,6 +71,7 @@ const AuthForm = () => {
 				})
 
 				const dataResult = await result.json()
+				console.log(dataResult)
 
 				//setisloading à false lorsque le serveur à répondu
 				setIsLoading(false)

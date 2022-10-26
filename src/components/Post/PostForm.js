@@ -1,11 +1,10 @@
 /* eslint-disable linebreak-style */
 /* eslint-disable no-unused-vars */
 /* eslint-disable react/prop-types */
-import React, { useState, useRef, useContext, useEffect, useLayoutEffect} from 'react'
+import React, { useState, useRef, useContext, useEffect } from 'react'
 import AuthContext from '../../Context/authContext'
 import Button from '../../UI/button'
 import '../../styles/postForm.css'
-
 
 const PostForm = ({ onRefresh, data }) => {
 	// eslint-disable-next-line no-unused-vars
@@ -39,7 +38,7 @@ const PostForm = ({ onRefresh, data }) => {
 					method: 'POST',
 					body: formData,
 					headers: {
-						'Accept': 'multipart/form-data',
+						Accept: 'multipart/form-data',
 						Authorization: `Bearer ${authCtx.token}`,
 					},
 				})
@@ -59,16 +58,15 @@ const PostForm = ({ onRefresh, data }) => {
 		messageInputRef.current.value = ''
 	}
 
-	useLayoutEffect(() => {
+	useEffect(() => {
 		onRefresh()
 	}, [formData])
-
 
 	return (
 		<div>
 			{isLoggedIn && (
 				<section>
-					<form onSubmit={submitHandler} className='post-form'>
+					<form onSubmit={submitHandler} className="post-form">
 						<h2>Votre nouveau commentaire</h2>
 						<input
 							type="text"
@@ -77,14 +75,13 @@ const PostForm = ({ onRefresh, data }) => {
 							ref={messageInputRef}
 							placeholder="Votre message"
 							required
-							className='input-field'
+							className="input-field"
 						/>
 						<input
 							type="file"
 							id="file"
 							name="file"
 							onChange={(event) => handlePicture(event)}
-
 						/>
 						<Button type={'submit'}>Publier</Button>
 					</form>

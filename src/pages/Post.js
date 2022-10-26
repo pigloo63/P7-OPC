@@ -1,6 +1,6 @@
 /* eslint-disable linebreak-style */
 /* eslint-disable react/no-unescaped-entities */
-import React, { useState, useContext, useCallback } from 'react'
+import React, { useState, useContext, useCallback, useEffect } from 'react'
 import AuthContext from '../Context/authContext'
 import { useHistory } from 'react-router-dom'
 import PostForm from '../components/Post/PostForm'
@@ -10,7 +10,6 @@ import LikePost from '../components/Post/likePost'
 import '../styles/post.css'
 
 const Post = () => {
-	console.log('coucou')
 	const authCtx = useContext(AuthContext)
 	const [data, setData] = useState([])
 
@@ -24,7 +23,7 @@ const Post = () => {
 
 	const fetchHandler = useCallback(async () => {
 		try {
-			//console.log('je suis dans le try get')
+			console.log('je suis dans le try GET')
 			const result = await fetch(url, {
 				method: 'GET',
 				headers: {
@@ -37,20 +36,25 @@ const Post = () => {
 		} catch (error) {
 			console.log('Pas de réponse de l\'API')
 		}
-	}, [])
+	}, [data])
 
-	function historyHandler() {
-		history.push('/')
-	}
+	useEffect(() => {
+		fetchHandler()
+	}, [])
 
 	const onRefresh = () => {
 		fetchHandler()
 	}
 
+	function historyHandler() {
+		history.push('/')
+	}
+
+
 	return (
 		<div>
 			{isLoggedIn && (
-				<section className='container'>
+				<section className="container">
 					{isLoggedIn && (
 						<h1 className="title">LE RESEAU GROUPOMANIA</h1>
 					)}
@@ -61,40 +65,46 @@ const Post = () => {
 						<div className="reverse">
 							{data.map((post) => (
 								<div key={post._id} className="container-post">
+									<p>{post.userId}</p>
 									<p>{post.message}</p>
-
-									{post.imageUrl && <img
-										src={post.imageUrl}
-										alt="image utilisateur"
-										height={'200px'}
-										className='image-style'
-									/>}
-									<div className='component-style'>
-										<LikePost
-											id={post._id}
-											userId={post.userId}
-											like={post.likes}
-											onRefresh={onRefresh}
+									{post.imageUrl && (
+										<img
+											src={post.imageUrl}
+											alt="image utilisateur"
+											height={'200px'}
+											className="image-style"
 										/>
-										{(userId === post.userId ||
-                                            isAdmin) && (
-											<ModifyPost
+									)}
+									{
+										<div className="component-style">
+											<LikePost
 												id={post._id}
-												data={data}
-												imageUrl={post.imageUrl}
-												message={post.message}
+												userId={post.userId}
+												like={post.likes}
 												onRefresh={onRefresh}
 											/>
-										)}
-										{(userId === post.userId ||
-                                            isAdmin) && (
-											<DelePost
-												id={post._id}
-												data={data}
-												onRefresh={onRefresh}
-											/>
-										)}
-									</div>
+											{(isAdmin === true ||
+                                                userId === post.userId) && (
+												<ModifyPost
+													id={post._id}
+													userId={post.userId}
+													data={data}
+													imageUrl={post.imageUrl}
+													message={post.message}
+													onRefresh={onRefresh}
+												/>
+											)}
+											{(userId === post.userId ||
+                                                isAdmin === true ) && (
+												<DelePost
+													userId={post.userId}
+													id={post._id}
+													data={data}
+													onRefresh={onRefresh}
+												/>
+											)}
+										</div>
+									}
 								</div>
 							))}
 						</div>
@@ -102,10 +112,15 @@ const Post = () => {
 				</section>
 			)}
 			{!isLoggedIn && (
-				<p>Vous êtes déconnecté ou vous venez de créer votre compte</p>
+				<p className="logout-text">
+                    Vous êtes déconnecté ou vous venez de créer votre compte
+				</p>
 			)}
 			{!isLoggedIn && (
-				<p onClick={() => historyHandler()}>
+				<p
+					className="logout-text-click"
+					onClick={() => historyHandler()}
+				>
                     Retourné à la page de conexion
 				</p>
 			)}

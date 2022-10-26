@@ -1,3 +1,4 @@
+/* eslint-disable linebreak-style */
 /* eslint-disable no-undef */
 const http = require('http')
 const app = require('./app')

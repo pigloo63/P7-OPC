@@ -5,10 +5,11 @@ import AuthContext from '../../Context/authContext'
 import Button from '../../UI/button'
 
 // eslint-disable-next-line react/prop-types
-const DelePost = ({ id, data, onRefresh }) => {
+const DelePost = ({ id, data, onRefresh, userId }) => {
 	const [newData, setNewData] = useState(data)
-
 	const authCtx = useContext(AuthContext)
+
+	const isAdmin = authCtx.userAdmin
 
 	const url = `http://localhost:4000/api/post//${id}`
 
@@ -42,9 +43,9 @@ const DelePost = ({ id, data, onRefresh }) => {
 
 	return (
 		<div>
-			<form onSubmit={deleteHandler}>
+			{(userId === authCtx.userId || isAdmin === true)  && <form onSubmit={deleteHandler}>
 				<Button type={'submit'} className='btn-type'>Supprimer</Button>
-			</form>
+			</form>}
 		</div>
 	)
 }

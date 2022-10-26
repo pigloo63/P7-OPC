@@ -1,3 +1,4 @@
+/* eslint-disable linebreak-style */
 /* eslint-disable no-undef */
 const express = require('express')
 const mongoose = require('mongoose')
@@ -44,7 +45,7 @@ const apiLimiter = rateLimit({
 	legacyHeaders: false, // Disable the `X-RateLimit-*` headers
 })
 
-app.use('/api', apiLimiter)
+app.use('/api/auth', apiLimiter)
 
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
