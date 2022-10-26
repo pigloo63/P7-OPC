@@ -1,7 +1,3 @@
-.container-modify{
-    margin-right: 45px;
-}
-
 .modify-form{
     display: flex;
     flex-direction: column;
@@ -13,4 +9,20 @@
     border-radius: 10px;
     margin-bottom: 15px;
     height: 40px;
+}
+
+.container-modify{
+    margin-right: 30px;
+}
+
+@media (max-width: 768px)
+{
+    .modify-form{
+        margin: 20px;
+    }
+
+    .container-modify{
+        margin: 0%;
+    }
+
 }

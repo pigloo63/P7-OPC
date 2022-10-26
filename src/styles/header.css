@@ -43,5 +43,12 @@ header{
     .logo{
         width: 30%;
     }
+    
+    .container-header{
+        margin: auto;
+        justify-content: center;
+        margin-right: 50px;
+        
+    }
 
 }

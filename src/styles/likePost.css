@@ -2,3 +2,11 @@
     width: 150px;
     display: inherit;
 }
+
+@media (max-width: 768px)
+{
+    .like-style{
+        margin: auto;
+    }
+
+}
