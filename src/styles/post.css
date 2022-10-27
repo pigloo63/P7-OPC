@@ -13,9 +13,8 @@
 }
 
 .container-post{
-    border: 1px solid #4E5166;
     border-radius: 30px;
-    box-shadow: 10px 5px 5px  #4E5166;
+    box-shadow: 5px 0px 15px  #4E5166;
     margin: auto;
     margin-top: 15px;
     margin-bottom: 15px;
@@ -52,6 +51,12 @@
     color: blue;
 }
 
+.idUsers{
+    display: flex;
+    color: #FD2D01;
+    font-weight: bold;
+}
+
 
 @media (max-width: 992px)
 {
@@ -68,7 +73,7 @@
     }
 
     .container-post{
-        width: 70%;
+        width: 75%;
     }
 
 }

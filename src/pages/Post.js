@@ -23,7 +23,7 @@ const Post = () => {
 
 	const fetchHandler = useCallback(async () => {
 		try {
-			console.log('je suis dans le try GET')
+			//console.log('je suis dans le try GET')
 			const result = await fetch(url, {
 				method: 'GET',
 				headers: {
@@ -65,7 +65,7 @@ const Post = () => {
 						<div className="reverse">
 							{data.map((post) => (
 								<div key={post._id} className="container-post">
-									<p>{post.userId}</p>
+									<p className='idUsers'>{post.userId}</p>
 									<p>{post.message}</p>
 									{post.imageUrl && (
 										<img

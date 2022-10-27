@@ -2,8 +2,9 @@
     display: flex;
     flex-wrap: wrap;
     flex-direction: column;
-    width: 20%;
+    width: 50%;
     margin: auto;
+    align-content: center;
 }
 
 .authForm-title{
@@ -27,4 +28,26 @@ button{
     font-size: 20px;
     color: #FD2D01;
 
+}
+
+.input-field-auth{
+    border-radius: 20px;
+    height: 30px;
+    width: 80%;
+}
+
+@media (max-width: 992px)
+{
+    .input-field-auth{
+        height: 30px;
+        width: 100%;
+    }
+}
+
+@media (max-width: 768px)
+{
+    .input-field-auth{
+        height: 30px;
+        width: 100%;
+    }
 }

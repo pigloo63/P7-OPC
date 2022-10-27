@@ -68,15 +68,17 @@ const PostForm = ({ onRefresh, data }) => {
 				<section>
 					<form onSubmit={submitHandler} className="post-form">
 						<h2>Votre nouveau commentaire</h2>
+						<label className='label-form'>Votre message:</label>
 						<input
 							type="text"
 							id="message"
 							name="message"
 							ref={messageInputRef}
-							placeholder="Votre message"
+							placeholder="Bonjour à tous"
 							required
-							className="input-field"
+							className="input-field-form"
 						/>
+						<label className='label-form'>Votre Image</label>
 						<input
 							type="file"
 							id="file"

@@ -8,7 +8,7 @@ const defaultValue = {
 	userAdmin: false,
 	userIsLoggedIn: false,
 	login: () => {},
-	logout: () => {}
+	logout: () => {},
 }
 
 const AuthContext = createContext(defaultValue)
@@ -20,11 +20,9 @@ const userIdStorage = localStorage.getItem('userId')
 const adminLocalStorage = JSON.parse(localStorage.getItem('userAdmin'))
 
 export const AuthContextProvider = (props) => {
-
 	const [token, setToken] = useState(tokenStorage)
 	const [userId, setUserId] = useState(userIdStorage)
 	const [userAdmin, setUserAdmin] = useState(adminLocalStorage)
-	console.log(userAdmin)
 
 	const loginHandler = (token, userId, userAdmin) => {
 		setToken(token)
@@ -51,7 +49,7 @@ export const AuthContextProvider = (props) => {
 		userAdmin: userAdmin,
 		isLoggedIn: userIsLoggedIn,
 		login: loginHandler,
-		logout: logoutHandler
+		logout: logoutHandler,
 	}
 
 	return (
@@ -59,12 +57,10 @@ export const AuthContextProvider = (props) => {
 			{props.children}
 		</AuthContext.Provider>
 	)
-
 }
 
 AuthContextProvider.propTypes = {
-	children:PropType.node
+	children: PropType.node,
 }
-	
 
 export default AuthContext

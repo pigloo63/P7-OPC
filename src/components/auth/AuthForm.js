@@ -99,19 +99,23 @@ const AuthForm = () => {
 			<form onSubmit={submithandler} className='authForm'>
 				<label htmlFor="email">Votre email</label>
 				<input
+					className="input-field-auth"
 					type="email"
 					id="email"
 					name="email"
 					ref={emailInputRef}
+					placeholder='exemple@exemple.com'
 					required
 				/>
 				<label htmlFor="password">Mot de passe</label>
 				<input
+					className="input-field-auth"
 					type="password"
 					id="password"
 					name="password"
 					ref={pwdInputRef}
 					required
+					placeholder='exemple : pL54n7JHX!'
 				/>
 				{!isloading && (
 					<Button type={'submit'}>
