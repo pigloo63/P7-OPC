@@ -5,7 +5,7 @@ import AuthContext from '../../Context/authContext'
 import Button from '../../UI/button'
 
 // eslint-disable-next-line react/prop-types
-const DelePost = ({ id, data, onRefresh, userId }) => {
+const DelePost = ({ id, data, onRefresh, userId, display }) => {
 	const [newData, setNewData] = useState(data)
 	const authCtx = useContext(AuthContext)
 
@@ -40,10 +40,9 @@ const DelePost = ({ id, data, onRefresh, userId }) => {
 		onRefresh()
 	}, [newData])
 
-
 	return (
 		<div>
-			{(userId === authCtx.userId || isAdmin === true)  && <form onSubmit={deleteHandler}>
+			{display && (userId === authCtx.userId || isAdmin === true)  && <form onSubmit={deleteHandler}>
 				<Button type={'submit'} className='btn-type'>Supprimer</Button>
 			</form>}
 		</div>

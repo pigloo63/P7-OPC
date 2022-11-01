@@ -2,7 +2,6 @@
 /* eslint-disable react/no-unescaped-entities */
 import React, { useState, useContext, useCallback, useEffect } from 'react'
 import AuthContext from '../Context/authContext'
-import { useHistory } from 'react-router-dom'
 import PostForm from '../components/Post/PostForm'
 import DelePost from '../components/Post/DeletePost'
 import ModifyPost from '../components/Post/ModifyPost'
@@ -12,12 +11,11 @@ import '../styles/post.css'
 const Post = () => {
 	const authCtx = useContext(AuthContext)
 	const [data, setData] = useState([])
+	const [displayComponent, setDisplayComponent] = useState(true)
 
 	const isLoggedIn = authCtx.isLoggedIn
 	const isAdmin = authCtx.userAdmin
 	const userId = authCtx.userId
-
-	const history = useHistory()
 
 	const url = 'http://localhost:4000/api/post/'
 
@@ -46,8 +44,8 @@ const Post = () => {
 		fetchHandler()
 	}
 
-	function historyHandler() {
-		history.push('/')
+	const display = () => {
+		setDisplayComponent((prevState) => !prevState)
 	}
 
 
@@ -65,7 +63,6 @@ const Post = () => {
 						<div className="reverse">
 							{data.map((post) => (
 								<div key={post._id} className="container-post">
-									<p className='idUsers'>{post.userId}</p>
 									<p>{post.message}</p>
 									{post.imageUrl && (
 										<img
@@ -81,9 +78,10 @@ const Post = () => {
 												id={post._id}
 												userId={post.userId}
 												like={post.likes}
+												display={displayComponent}
 												onRefresh={onRefresh}
 											/>
-											{(isAdmin === true ||
+											{(isAdmin === true  || isAdmin === 'true' ||
                                                 userId === post.userId) && (
 												<ModifyPost
 													id={post._id}
@@ -91,15 +89,17 @@ const Post = () => {
 													data={data}
 													imageUrl={post.imageUrl}
 													message={post.message}
+													display={() => display()}
 													onRefresh={onRefresh}
 												/>
 											)}
-											{(userId === post.userId ||
-                                                isAdmin === true ) && (
+											{(userId === post.userId || 
+                                                isAdmin) && (
 												<DelePost
 													userId={post.userId}
 													id={post._id}
 													data={data}
+													display={displayComponent}
 													onRefresh={onRefresh}
 												/>
 											)}
@@ -110,19 +110,6 @@ const Post = () => {
 						</div>
 					</div>
 				</section>
-			)}
-			{!isLoggedIn && (
-				<p className="logout-text">
-                    Vous êtes déconnecté ou vous venez de créer votre compte
-				</p>
-			)}
-			{!isLoggedIn && (
-				<p
-					className="logout-text-click"
-					onClick={() => historyHandler()}
-				>
-                    Retourné à la page de conexion
-				</p>
 			)}
 		</div>
 	)

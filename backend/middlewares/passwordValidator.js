@@ -1,3 +1,4 @@
+/* eslint-disable linebreak-style */
 const passwordValidator = require('password-validator')
 
 const newPassword = new passwordValidator()

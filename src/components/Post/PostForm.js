@@ -9,25 +9,21 @@ import '../../styles/postForm.css'
 const PostForm = ({ onRefresh, data }) => {
 	// eslint-disable-next-line no-unused-vars
 	const [formData, setFormData] = useState(data)
-	const [file, setFile] = useState(null)
-
 	const messageInputRef = useRef()
+	const imageInputRef = useRef()
 
 	const authCtx = useContext(AuthContext)
 	const isLoggedIn = authCtx.isLoggedIn
-
-	const handlePicture = (event) => {
-		setFile(event.target.files[0])
-	}
 
 	const submitHandler = (e) => {
 		e.preventDefault()
 
 		const enteredMessage = messageInputRef.current.value
+		let enteredImage = imageInputRef.current.files[0]
 
 		const formData = new FormData()
 		formData.append('message', enteredMessage)
-		formData.append('image', file)
+		formData.append('image', enteredImage)
 
 		const url = 'http://localhost:4000/api/post/'
 
@@ -56,6 +52,8 @@ const PostForm = ({ onRefresh, data }) => {
 		formFetchHandler()
 
 		messageInputRef.current.value = ''
+		imageInputRef.current.value = null
+
 	}
 
 	useEffect(() => {
@@ -83,7 +81,7 @@ const PostForm = ({ onRefresh, data }) => {
 							type="file"
 							id="file"
 							name="file"
-							onChange={(event) => handlePicture(event)}
+							ref={imageInputRef}
 						/>
 						<Button type={'submit'}>Publier</Button>
 					</form>

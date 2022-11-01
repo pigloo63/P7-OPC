@@ -30,6 +30,10 @@ button{
 
 }
 
+.click-button:hover{
+    color: blue;
+}
+
 .input-field-auth{
     border-radius: 20px;
     height: 30px;

@@ -7,7 +7,7 @@ import AuthContext from '../../Context/authContext'
 import Button from '../../UI/button'
 import '../../styles/likePost.css'
 
-const LikePost = ({ id, like, onRefresh }) => {
+const LikePost = ({ id, like, onRefresh, display }) => {
 	const authCtx = useContext(AuthContext)
 	const [likeData, likeSetData] = useState([])
 	const [likes, setLikes] = useState(0)
@@ -70,11 +70,11 @@ const LikePost = ({ id, like, onRefresh }) => {
 
 	return (
 		<div>
-			<form onSubmit={submitHandler} className='like-style'>
+			{display && <form onSubmit={submitHandler} className='like-style'>
 				<Button type={'submit'} onClick={increment}>
                     J'aime
 				</Button> :{' '} {like}
-			</form>
+			</form>}
 		</div>
 	)
 }

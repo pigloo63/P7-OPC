@@ -3,6 +3,7 @@ import React, {useContext} from 'react'
 import { Link } from 'react-router-dom'
 import AuthContext from '../../Context/authContext'
 import '../../styles/header.css'
+import { useHistory } from 'react-router-dom'
 
 
 const Header = () => {
@@ -10,6 +11,14 @@ const Header = () => {
 	const authCtx = useContext(AuthContext)
 
 	const isLoggedIn = authCtx.isLoggedIn
+
+	let history = useHistory()
+
+	
+	function handleclick(){
+		authCtx.logout()
+		history.push('/')
+	}
 	
 	return (
 		<header>
@@ -19,7 +28,7 @@ const Header = () => {
 					{isLoggedIn && <Link to="/reseaux">
 						<li className='header-list'>Réseaux</li>
 					</Link>}
-					{isLoggedIn && <li className='header-list' onClick={authCtx.logout}>Se déconnecter</li>}
+					{isLoggedIn && <li className='header-list' onClick={handleclick} id='logOut'>Se déconnecter</li>}
 				</ul>
 			</nav>
 		</header>

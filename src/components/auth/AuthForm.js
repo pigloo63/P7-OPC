@@ -1,6 +1,9 @@
 /* eslint-disable linebreak-style */
+/* eslint-disable react/no-unescaped-entities */
+/* eslint-disable linebreak-style */
 /* eslint-disable no-useless-escape */
 import React, { useRef, useState, useContext } from 'react'
+import { Link } from 'react-router-dom'
 import Button from '../../UI/button'
 import AuthContext from '../../Context/authContext'
 import { useHistory } from 'react-router-dom'
@@ -18,11 +21,11 @@ const AuthForm = () => {
 	// eslint-disable-next-line no-unused-vars
 	const [data, setData] = useState()
 	const [isloading, setIsLoading] = useState(false)
-	const [islogin, setIsLogin] = useState(true)
+	// const [islogin, setIsLogin] = useState(true)
 
-	const toggleAuthHandler = () => {
-		setIsLogin((prevState) => !prevState)
-	}
+	// const toggleAuthHandler = () => {
+	// 	setIsLogin((prevState) => !prevState)
+	// }
 
 	const submithandler = (e) => {
 		e.preventDefault()
@@ -50,12 +53,12 @@ const AuthForm = () => {
 		setIsLoading(true)
 
 		//Changement d'url si l'utilisateur veut se connecter ou s'inscrire
-		let url
-		if (islogin) {
-			url = 'http://localhost:4000/api/auth/login'
-		} else {
-			url = 'http://localhost:4000/api/auth/signup'
-		}
+		let url = 'http://localhost:4000/api/auth/login'
+		// if (islogin) {
+		// 	url = 'http://localhost:4000/api/auth/login'
+		// } else {
+		// 	url = 'http://localhost:4000/api/auth/signup'
+		// }
 		//Récupération et validation des email et PWD dans le BDD
 		const fetchlog = async () => {
 			try {
@@ -78,7 +81,11 @@ const AuthForm = () => {
 
 				if (result.ok) {
 					setData(dataResult)
-					authCtx.login(dataResult.token, dataResult.userId, dataResult.userAdmin)
+					authCtx.login(
+						dataResult.token,
+						dataResult.userId,
+						dataResult.userAdmin
+					)
 					history.push('/reseaux')
 				}
 			} catch (error) {
@@ -87,7 +94,6 @@ const AuthForm = () => {
 		}
 		fetchlog()
 
-
 		//vider les champs après la connection
 		emailInputRef.current.value = ''
 		pwdInputRef.current.value = ''
@@ -95,8 +101,8 @@ const AuthForm = () => {
 
 	return (
 		<>
-			{islogin ? <h1 className='authForm-title'>Se connecter</h1> : <h1 className='authForm-title'>Créer un compte</h1>}
-			<form onSubmit={submithandler} className='authForm'>
+			<h1 className="authForm-title">Se connecter</h1>
+			<form onSubmit={submithandler} className="authForm">
 				<label htmlFor="email">Votre email</label>
 				<input
 					className="input-field-auth"
@@ -104,7 +110,7 @@ const AuthForm = () => {
 					id="email"
 					name="email"
 					ref={emailInputRef}
-					placeholder='exemple@exemple.com'
+					placeholder="exemple@exemple.com"
 					required
 				/>
 				<label htmlFor="password">Mot de passe</label>
@@ -115,17 +121,19 @@ const AuthForm = () => {
 					name="password"
 					ref={pwdInputRef}
 					required
-					placeholder='exemple : pL54n7JHX!'
+					placeholder="exemple : pL54n7JHX!"
 				/>
 				{!isloading && (
 					<Button type={'submit'}>
-						{islogin ? 'Se Connecter' : 'Créer un compte'}
+						Se Connecter
 					</Button>
+
 				)}
-				<p onClick={toggleAuthHandler} className='click-button'>
+				<Link to='/createAccount'>Créer un compte</Link>
+				{/* <p onClick={toggleAuthHandler} className="click-button">
 					{islogin ? 'Créer un compte' : 'Se connecter'}
-				</p>
-				{isloading && <p>En cours de chargement</p>}
+				</p> */}
+				{/* {isloading && <p>En cours de chargement</p>} */}
 			</form>
 		</>
 	)

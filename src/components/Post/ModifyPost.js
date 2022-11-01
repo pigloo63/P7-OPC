@@ -12,7 +12,7 @@ import AuthContext from '../../Context/authContext'
 import Button from '../../UI/button'
 import '../../styles/modifyPost.css'
 
-const ModifyPost = ({ id, onRefresh, data, imageUrl, message, userId }) => {
+const ModifyPost = ({ id, onRefresh, data, imageUrl, message, userId, display }) => {
 	const [updatePost, setUpdatePost] = useState(data)
 	const [modificationPost, setModificationPost] = useState(false)
 	const [file, setFile] = useState(null)
@@ -70,6 +70,7 @@ const ModifyPost = ({ id, onRefresh, data, imageUrl, message, userId }) => {
 	//Modification des données sur la page
 	const modificationHandler = () => {
 		setModificationPost((modifyPost) => !modifyPost)
+		display()
 	}
 
 	function returnModificationHandler() {
@@ -113,7 +114,7 @@ const ModifyPost = ({ id, onRefresh, data, imageUrl, message, userId }) => {
 				</section>
 			)}
 			{(userId === authCtx.userId || isAdmin === true) && (
-				<Button onClick={modificationHandler}>Modifier</Button>
+				<Button onClick={modificationHandler}>{!modificationPost ? 'Modifier' : 'Retour'}</Button>
 			)}
 		</div>
 	)
