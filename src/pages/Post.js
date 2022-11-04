@@ -11,7 +11,6 @@ import '../styles/post.css'
 const Post = () => {
 	const authCtx = useContext(AuthContext)
 	const [data, setData] = useState([])
-	const [displayComponent, setDisplayComponent] = useState(true)
 
 	const isLoggedIn = authCtx.isLoggedIn
 	const isAdmin = authCtx.userAdmin
@@ -44,72 +43,69 @@ const Post = () => {
 		fetchHandler()
 	}
 
-	const display = () => {
-		setDisplayComponent((prevState) => !prevState)
-	}
-
-
 	return (
 		<div>
 			{isLoggedIn && (
-				<section className="container">
+				<div className='main'>
 					{isLoggedIn && (
 						<h1 className="title">LE RESEAU GROUPOMANIA</h1>
 					)}
-					{isLoggedIn && (
-						<PostForm onRefresh={onRefresh} data={data} />
-					)}
-					<div>
-						<div className="reverse">
-							{data.map((post) => (
-								<div key={post._id} className="container-post">
-									<p>{post.message}</p>
-									{post.imageUrl && (
-										<img
-											src={post.imageUrl}
-											alt="image utilisateur"
-											height={'200px'}
-											className="image-style"
-										/>
-									)}
-									{
-										<div className="component-style">
-											<LikePost
-												id={post._id}
-												userId={post.userId}
-												like={post.likes}
-												display={displayComponent}
-												onRefresh={onRefresh}
+					<section className="container">
+						{isLoggedIn && (
+							<PostForm onRefresh={onRefresh} data={data} />
+						)}
+						<div>
+							<div className="reverse">
+								{data.map((post) => (
+									<div key={post._id} className="container-post">
+										<p>{post.message}</p>
+										{post.imageUrl && (
+											<img
+												src={post.imageUrl}
+												alt="image utilisateur"
+												height={'200px'}
+												className="image-style"
 											/>
-											{(isAdmin === true  || isAdmin === 'true' ||
-                                                userId === post.userId) && (
-												<ModifyPost
+										)}
+										{
+											<div className="component-style">
+												<LikePost
+													className='displayComponent'
 													id={post._id}
 													userId={post.userId}
-													data={data}
-													imageUrl={post.imageUrl}
-													message={post.message}
-													display={() => display()}
+													like={post.likes}
 													onRefresh={onRefresh}
 												/>
-											)}
-											{(userId === post.userId || 
-                                                isAdmin) && (
-												<DelePost
-													userId={post.userId}
-													id={post._id}
-													data={data}
-													display={displayComponent}
-													onRefresh={onRefresh}
-												/>
-											)}
-										</div>
-									}
-								</div>
-							))}
+												{(isAdmin === true  || isAdmin === 'true' ||
+													userId === post.userId) && (
+													<ModifyPost
+														id={post._id}
+														userId={post.userId}
+														data={data}
+														imageUrl={post.imageUrl}
+														message={post.message}
+														onRefresh={onRefresh}
+													/>
+												)}
+												{(userId === post.userId || 
+													isAdmin) && (
+													<DelePost
+														className='displayComponent'
+														userId={post.userId}
+														id={post._id}
+														data={data}
+														onRefresh={onRefresh}
+													/>
+												)}
+											</div>
+										}
+									</div>
+								))}
+							</div>
 						</div>
-					</div>
-				</section>
+					</section>
+
+				</div>
 			)}
 		</div>
 	)

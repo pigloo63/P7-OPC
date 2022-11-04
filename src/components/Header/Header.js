@@ -1,6 +1,5 @@
 /* eslint-disable linebreak-style */
 import React, {useContext} from 'react'
-import { Link } from 'react-router-dom'
 import AuthContext from '../../Context/authContext'
 import '../../styles/header.css'
 import { useHistory } from 'react-router-dom'
@@ -25,9 +24,6 @@ const Header = () => {
 			<img src='./img/icon-left-font.png' alt='logo-grouponania' className='logo'/>
 			<nav>
 				<ul className='container-header'>
-					{isLoggedIn && <Link to="/reseaux">
-						<li className='header-list'>Réseaux</li>
-					</Link>}
 					{isLoggedIn && <li className='header-list' onClick={handleclick} id='logOut'>Se déconnecter</li>}
 				</ul>
 			</nav>

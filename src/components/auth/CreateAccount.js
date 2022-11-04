@@ -1,3 +1,4 @@
+/* eslint-disable no-useless-escape */
 /* eslint-disable no-unused-vars */
 /* eslint-disable react/no-unescaped-entities */
 import React, { useRef, useState, useContext } from 'react'
@@ -21,6 +22,23 @@ const CreateAccount = () => {
 		const enteredEmail = emailInputRef.current.value
 		const enteredPwd = pwdInputRef.current.value
 
+		//Contrôle de la validité de l'email côté front
+		//trim retire les espaces à au début et à la fin de la chaine de caractère
+		if (
+			enteredEmail.trim().length === 0 ||
+            enteredPwd.trim().length === 0
+		) {
+			return
+		}
+
+		const regexEmail = (value) => {
+			return /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/.test(value)
+		}
+
+		if (!regexEmail(enteredEmail)) {
+			return
+		}
+
 		const url = 'http://localhost:4000/api/auth/signup'
 
 		const fetchSignup = async () => {
@@ -38,8 +56,6 @@ const CreateAccount = () => {
 
 				const dataResult = await result.json()
 				console.log(dataResult)
-
-				//setisloading à false lorsque le serveur à répondu
 
 				if (result.ok) {
 					setData(dataResult)
@@ -76,13 +92,14 @@ const CreateAccount = () => {
 					required
 					placeholder="exemple : pL54n7JHX!"
 				/>
-				<p>Le mot de passe doit contenir au minimum : </p>
-				<p>- 8 caractères</p>
-				<p>- Au moins 1 majuscule</p>
-				<p>- Au moins de 2 chiffres</p>
-				<p>- Ne dois pas comporter d'espaces</p>
-				<p>- Passw0rd et Password123 sont interdit</p>
-
+				<div>
+					<p>Le mot de passe doit contenir au minimum : </p>
+					<p>- 8 caractères</p>
+					<p>- Au moins 1 majuscule</p>
+					<p>- Au moins de 2 chiffres</p>
+					<p>- Ne dois pas comporter d'espaces</p>
+					<p>- Passw0rd et Password123 sont interdit</p>
+				</div>
 				<Button type={'submit'}>Créer un compte</Button>
 			</form>
 		</div>

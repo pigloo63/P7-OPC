@@ -20,7 +20,7 @@ const AuthForm = () => {
 
 	// eslint-disable-next-line no-unused-vars
 	const [data, setData] = useState()
-	const [isloading, setIsLoading] = useState(false)
+	// const [isloading, setIsLoading] = useState(false)
 	// const [islogin, setIsLogin] = useState(true)
 
 	// const toggleAuthHandler = () => {
@@ -33,32 +33,12 @@ const AuthForm = () => {
 		const enteredEmail = emailInputRef.current.value
 		const enteredPwd = pwdInputRef.current.value
 
-		//Contrôle de la validité de l'email côté front
-		//trim retire les espaces à au début et à la fin de la chaine de caractère
-		if (
-			enteredEmail.trim().length === 0 ||
-            enteredPwd.trim().length === 0
-		) {
-			return
-		}
-
-		const regexEmail = (value) => {
-			return /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/.test(value)
-		}
-
-		if (!regexEmail(enteredEmail)) {
-			return
-		}
-
-		setIsLoading(true)
+		//setIsLoading(true)
 
 		//Changement d'url si l'utilisateur veut se connecter ou s'inscrire
 		let url = 'http://localhost:4000/api/auth/login'
-		// if (islogin) {
-		// 	url = 'http://localhost:4000/api/auth/login'
-		// } else {
-		// 	url = 'http://localhost:4000/api/auth/signup'
-		// }
+	
+		
 		//Récupération et validation des email et PWD dans le BDD
 		const fetchlog = async () => {
 			try {
@@ -77,7 +57,7 @@ const AuthForm = () => {
 				console.log(dataResult)
 
 				//setisloading à false lorsque le serveur à répondu
-				setIsLoading(false)
+				// setIsLoading(false)
 
 				if (result.ok) {
 					setData(dataResult)
@@ -123,17 +103,11 @@ const AuthForm = () => {
 					required
 					placeholder="exemple : pL54n7JHX!"
 				/>
-				{!isloading && (
-					<Button type={'submit'}>
-						Se Connecter
-					</Button>
-
-				)}
-				<Link to='/createAccount'>Créer un compte</Link>
-				{/* <p onClick={toggleAuthHandler} className="click-button">
-					{islogin ? 'Créer un compte' : 'Se connecter'}
-				</p> */}
-				{/* {isloading && <p>En cours de chargement</p>} */}
+				
+				<Button type={'submit'}>
+					Se Connecter
+				</Button>
+				<Link to='/createAccount' className='createAcount'>Créer un compte</Link>
 			</form>
 		</>
 	)
