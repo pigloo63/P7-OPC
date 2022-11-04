@@ -22,13 +22,15 @@
     right: 34%;
     width: 30%;
     padding: 20px;
-    background-color: rgb(78, 81, 102)
+    background-color: rgb(78, 81, 102);
+    border-radius: 20px;
 }
 
 .modify-text-field{
     margin-bottom: 15px;
     height: 100px;
-    width: 100%;
+    width: 99%;
+    border-radius: 20px;
 }
 
 

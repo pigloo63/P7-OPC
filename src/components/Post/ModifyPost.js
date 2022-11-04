@@ -23,6 +23,7 @@ const ModifyPost = ({
 	const [updatePost, setUpdatePost] = useState(data)
 	const [modificationPost, setModificationPost] = useState(false)
 	const [file, setFile] = useState(null)
+	const [messageSaved, setMessageSaved] =useState(message)
 
 	const authCtx = useContext(AuthContext)
 	const isAdmin = authCtx.userAdmin
@@ -34,6 +35,10 @@ const ModifyPost = ({
 
 	const handlePicture = (event) => {
 		setFile(event.target.files[0])
+	}
+
+	const handleMessage =(event) => {
+		setMessageSaved(event.target.value)
 	}
 
 	const submitHandler = () => {
@@ -98,6 +103,8 @@ const ModifyPost = ({
 									type="text"
 									id="message"
 									name="message"
+									value={messageSaved}
+									onChange={handleMessage}
 									ref={messageInputRef}
 									placeholder="Nouveau message"
 									required
@@ -113,12 +120,15 @@ const ModifyPost = ({
 										onChange={(event) => handlePicture(event)}
 									/>
 								)}
-								<Button
-									type={'submit'}
-									onClick={returnModificationHandler}
-								>
-									Publier
-								</Button>
+								<div>
+									<Button
+										type={'submit'}
+										onClick={returnModificationHandler}
+									>
+										Publier
+									</Button>
+									<Button onClick={modificationHandler}>Retour</Button>
+								</div>
 							</form>
 						</div>
 					)}
