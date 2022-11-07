@@ -83,7 +83,7 @@ const PostForm = ({ onRefresh, data }) => {
 							name="file"
 							ref={imageInputRef}
 						/>
-						<Button type={'submit'}>Publier</Button>
+						<Button type={'submit'} className='btn-publish'>Publier</Button>
 					</form>
 				</section>
 			)}

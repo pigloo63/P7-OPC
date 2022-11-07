@@ -3,6 +3,7 @@
 /* eslint-disable react/no-unescaped-entities */
 import React, { useRef, useState, useContext } from 'react'
 import Button from '../../UI/button'
+import { Link } from 'react-router-dom'
 import AuthContext from '../../Context/authContext'
 import { useHistory } from 'react-router-dom'
 
@@ -100,8 +101,9 @@ const CreateAccount = () => {
 					<p>- Ne dois pas comporter d'espaces</p>
 					<p>- Passw0rd et Password123 sont interdit</p>
 				</div>
-				<Button type={'submit'}>Créer un compte</Button>
+				<Button type={'submit'} className='btn-type-account'>Créer un compte</Button>
 			</form>
+			<Link to='/' className='linkToSignSignup'>Page de connexion </Link>
 		</div>
 	)
 }

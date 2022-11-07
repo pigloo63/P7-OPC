@@ -5,6 +5,7 @@
     width: 50%;
     margin: auto;
     align-content: center;
+    margin-bottom: 30px;
 }
 
 .authForm-title{
@@ -17,7 +18,6 @@ form label{
 
 button{
     margin: auto;
-    margin-top: 30px;
     width: 30%;
     font-size: 15px;
 }
@@ -51,6 +51,28 @@ button{
 
 .createAcount:hover{
     color:blue;
+}
+
+.linkToSignSignup{
+    font-weight: bold;
+    font-size: 20px;
+    color: #FD2D01;
+    text-decoration: none;
+}
+
+.linkToSignSignup:hover{
+    color: blue;
+}
+
+.btn-type-account{
+    cursor: pointer;
+    width: 100px;
+    padding: 5px;
+    border-radius: 30px;
+    margin-top: 30px;
+    background-color: #4E5166;
+    color: white;
+    font-weight: bold; 
 }
 
 @media (max-width: 992px)

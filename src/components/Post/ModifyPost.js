@@ -12,18 +12,11 @@ import AuthContext from '../../Context/authContext'
 import Button from '../../UI/button'
 import '../../styles/modifyPost.css'
 
-const ModifyPost = ({
-	id,
-	onRefresh,
-	data,
-	imageUrl,
-	message,
-	userId,
-}) => {
+const ModifyPost = ({ id, onRefresh, data, imageUrl, message, userId }) => {
 	const [updatePost, setUpdatePost] = useState(data)
 	const [modificationPost, setModificationPost] = useState(false)
 	const [file, setFile] = useState(null)
-	const [messageSaved, setMessageSaved] =useState(message)
+	const [messageSaved, setMessageSaved] = useState(message)
 
 	const authCtx = useContext(AuthContext)
 	const isAdmin = authCtx.userAdmin
@@ -37,7 +30,7 @@ const ModifyPost = ({
 		setFile(event.target.files[0])
 	}
 
-	const handleMessage =(event) => {
+	const handleMessage = (event) => {
 		setMessageSaved(event.target.value)
 	}
 
@@ -94,11 +87,19 @@ const ModifyPost = ({
 	return (
 		<div className="container-modify">
 			{modificationPost && (
-				<section className='section-modify'>
+				<section className="section-modify">
 					{(userId === authCtx.userId || isAdmin) && (
-						<div className='background-modify'>
-							<form onSubmit={submitHandler} className="modify-form">
-								<label htmlFor='message' className='label-formModify'>Votre nouveaux message</label>
+						<div className="background-modify">
+							<form
+								onSubmit={submitHandler}
+								className="modify-form"
+							>
+								<label
+									htmlFor="message"
+									className="label-formModify"
+								>
+                                    Votre nouveaux message
+								</label>
 								<input
 									type="text"
 									id="message"
@@ -110,33 +111,48 @@ const ModifyPost = ({
 									required
 									className="modify-text-field"
 								/>
-								{imageUrl && <label htmlFor='Image' className='label-formModify'>Votre nouvelle image</label>}
+								{imageUrl && (
+									<label
+										htmlFor="Image"
+										className="label-formModify"
+									>
+                                        Votre nouvelle image
+									</label>
+								)}
 								{imageUrl && (
 									<input
 										type="file"
 										id="file"
 										name="file"
 										ref={imageInputRef}
-										onChange={(event) => handlePicture(event)}
+										onChange={(event) =>
+											handlePicture(event)
+										}
 									/>
 								)}
-								<div>
+								<div className="button">
 									<Button
 										type={'submit'}
 										onClick={returnModificationHandler}
+										className="modal-modify-button"
 									>
-										Publier
+                                        Publier
 									</Button>
-									<Button onClick={modificationHandler}>Retour</Button>
+									<Button
+										onClick={modificationHandler}
+										className="modal-modify-button"
+									>
+                                        Retour
+									</Button>
 								</div>
 							</form>
 						</div>
 					)}
 				</section>
 			)}
-			<div className='modify-button'>
+			<div className="modify-button">
 				{(userId === authCtx.userId || isAdmin === true) && (
-					<Button onClick={modificationHandler} id={'modify-btn'}>
+					<Button onClick={modificationHandler} id={'modify-btn'} className='btn-type'>
 						{!modificationPost ? 'Modifier' : 'Retour'}
 					</Button>
 				)}

@@ -104,7 +104,7 @@ const AuthForm = () => {
 					placeholder="exemple : pL54n7JHX!"
 				/>
 				
-				<Button type={'submit'}>
+				<Button type={'submit'} className='btn-type-account'>
 					Se Connecter
 				</Button>
 				<Link to='/createAccount' className='createAcount'>Créer un compte</Link>

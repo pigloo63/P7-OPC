@@ -27,5 +27,24 @@
     margin-bottom: 20px;
     color: #FD2D01;
     font-weight: bold;
+}
 
+.btn-publish{
+    cursor: pointer;
+    width: 100px;
+    padding: 5px;
+    margin-bottom: 15px;
+    margin-top: 30px;
+    border-radius: 30px;
+    background-color: #4E5166;
+    color: white;
+    font-weight: bold;
+}
+
+.btn-publish:hover{
+    background-color: #FD2D01;
+}
+
+.btn-publish:focus{
+    background-color: #FD2D01;
 }

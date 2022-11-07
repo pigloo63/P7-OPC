@@ -8,9 +8,9 @@
 }
 
 .container{
-    max-width: 50%;
+    max-width: 100%;
     margin: auto;
-    width: 35%;
+    width: 50%;
     background-color: #FD2D01;
 }
 
@@ -33,6 +33,7 @@
 
 .image-style{
     margin: auto;
+    margin-bottom: 30px;
 }
 
 .logout-text{
@@ -61,20 +62,23 @@
 
 @media (max-width: 992px)
 {
+    .container{
+        width: 70%;
+    }
 
     .container-post{
-        width: 70%;
+        width: 100%;
     }
 
 }
 @media (max-width: 768px)
 {
-    .component-style{
-        flex-direction: column;
+    .container{
+        width: 100%;
     }
 
     .container-post{
-        width: 75%;
+        width: 100%;
     }
 
 }

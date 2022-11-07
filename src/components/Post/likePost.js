@@ -71,7 +71,7 @@ const LikePost = ({ id, like, onRefresh}) => {
 	return (
 		<div>
 			<form onSubmit={submitHandler} className='like-style'>
-				<Button type={'submit'} onClick={increment}>
+				<Button type={'submit'} onClick={increment} className='btn-type'>
                     J'aime
 				</Button> :{' '} {like}
 			</form>
