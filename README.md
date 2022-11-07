@@ -3,5 +3,5 @@
 2. Dans un terminal, allez dans le dossier source du projet :
    Lancez npm install, puis npm start pour le front, le front-end devra souvrir sur le port 3000. Attention à ce qu'il n'y ai aucun élément tournant déjà sur le port 3000
 
-3. Dans un terminal, alley dans le dossier backend :
+3. Dans un terminal, allez dans le dossier backend :
    Lancez npm install, puis npm start pour le back, le back-end devra souvrir sur le port 4000. Attention à ce qu'il n'y ai aucun élément tournant déjà sur le port 4000

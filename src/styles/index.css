@@ -3,7 +3,7 @@
 body{
     text-align: center;
     font-family: 'Lato', sans-serif;
-    width: 100%;
+    width: 1500px;
     margin: auto;
 }
 
@@ -21,6 +21,3 @@ body{
     background-color: #FD2D01;
 }
 
-.btn-type:focus{
-    background-color: #FD2D01;
-}

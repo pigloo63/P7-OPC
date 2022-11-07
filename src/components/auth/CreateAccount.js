@@ -41,6 +41,7 @@ const CreateAccount = () => {
 		}
 
 		const url = 'http://localhost:4000/api/auth/signup'
+		const urlLogin = 'http://localhost:4000/api/auth/login'
 
 		const fetchSignup = async () => {
 			try {
@@ -55,13 +56,34 @@ const CreateAccount = () => {
 					},
 				})
 
-				const dataResult = await result.json()
-				console.log(dataResult)
+				//const dataResult = await result.json()
+				//console.log(dataResult)
 
 				if (result.ok) {
-					setData(dataResult)
+					const result = await fetch(urlLogin, {
+						method: 'POST',
+						body: JSON.stringify({
+							email: enteredEmail,
+							password: enteredPwd,
+						}),
+						headers: {
+							'Content-type': 'application/json',
+						},
+					})
+	
+					const dataResult = await result.json()
+	
+					if (result.ok) {
+						setData(dataResult)
+						authCtx.login(
+							dataResult.token,
+							dataResult.userId,
+							dataResult.userAdmin
+						)
+						history.push('/reseaux')
+					}
 				}
-				history.push('/')
+				//history.push('/reseaux')
 			} catch (error) {
 				console.log('Pas de réponse de l\'API')
 			}

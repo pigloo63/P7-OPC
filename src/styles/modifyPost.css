@@ -18,12 +18,13 @@
     flex-direction: column;
     margin-top: 35px;
     position: fixed;
-    top: 30%;
-    right: 34%;
+    top: 50%;
+    left: 50%;
     width: 30%;
     padding: 20px;
     background-color: rgb(78, 81, 102);
     border-radius: 20px;
+    transform: translate(-50%, -50%);
 }
 
 .modify-text-field{
