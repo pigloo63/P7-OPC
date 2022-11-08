@@ -50,8 +50,6 @@
 {
     .modify-form{
         width: 70%;
-        top: 50%;
-        right: 12%;
         position: fixed;
         margin: auto;
     }
@@ -60,9 +58,8 @@
 @media (max-width: 768px)
 {
     .modify-form{
-        margin: 20px;
+        margin: auto;
         width: 85%;
-        right: 0%;
     }
 
     .container-modify{
