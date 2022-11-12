@@ -20,12 +20,6 @@ const AuthForm = () => {
 
 	// eslint-disable-next-line no-unused-vars
 	const [data, setData] = useState()
-	// const [isloading, setIsLoading] = useState(false)
-	// const [islogin, setIsLogin] = useState(true)
-
-	// const toggleAuthHandler = () => {
-	// 	setIsLogin((prevState) => !prevState)
-	// }
 
 	const submithandler = (e) => {
 		e.preventDefault()
@@ -33,7 +27,6 @@ const AuthForm = () => {
 		const enteredEmail = emailInputRef.current.value
 		const enteredPwd = pwdInputRef.current.value
 
-		//setIsLoading(true)
 
 		//Changement d'url si l'utilisateur veut se connecter ou s'inscrire
 		let url = 'http://localhost:4000/api/auth/login'
@@ -55,9 +48,6 @@ const AuthForm = () => {
 
 				const dataResult = await result.json()
 				console.log(dataResult)
-
-				//setisloading à false lorsque le serveur à répondu
-				// setIsLoading(false)
 
 				if (result.ok) {
 					setData(dataResult)

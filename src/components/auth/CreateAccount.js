@@ -17,14 +17,14 @@ const CreateAccount = () => {
 
 	const authCtx = useContext(AuthContext)
 
+	// Fonction pour créer son compte et se connecter directement
+
 	const signUpHandler = (e) => {
 		e.preventDefault()
 
 		const enteredEmail = emailInputRef.current.value
 		const enteredPwd = pwdInputRef.current.value
 
-		//Contrôle de la validité de l'email côté front
-		//trim retire les espaces à au début et à la fin de la chaine de caractère
 		if (
 			enteredEmail.trim().length === 0 ||
             enteredPwd.trim().length === 0
@@ -56,9 +56,6 @@ const CreateAccount = () => {
 					},
 				})
 
-				//const dataResult = await result.json()
-				//console.log(dataResult)
-
 				if (result.ok) {
 					const result = await fetch(urlLogin, {
 						method: 'POST',
@@ -83,7 +80,6 @@ const CreateAccount = () => {
 						history.push('/reseaux')
 					}
 				}
-				//history.push('/reseaux')
 			} catch (error) {
 				console.log('Pas de réponse de l\'API')
 			}

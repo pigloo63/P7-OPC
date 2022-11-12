@@ -20,7 +20,6 @@ const Post = () => {
 
 	const fetchHandler = useCallback(async () => {
 		try {
-			//console.log('je suis dans le try GET')
 			const result = await fetch(url, {
 				method: 'GET',
 				headers: {
@@ -46,7 +45,7 @@ const Post = () => {
 	return (
 		<div>
 			{isLoggedIn && (
-				<div className='main'>
+				<div className="main">
 					{isLoggedIn && (
 						<h1 className="title">LE RESEAU GROUPOMANIA</h1>
 					)}
@@ -57,7 +56,10 @@ const Post = () => {
 						<div>
 							<div className="reverse">
 								{data.map((post) => (
-									<div key={post._id} className="container-post">
+									<div
+										key={post._id}
+										className="container-post"
+									>
 										<p>{post.message}</p>
 										{post.imageUrl && (
 											<img
@@ -70,14 +72,15 @@ const Post = () => {
 										{
 											<div className="component-style">
 												<LikePost
-													className='displayComponent'
+													className="displayComponent"
 													id={post._id}
 													userId={post.userId}
 													like={post.likes}
 													onRefresh={onRefresh}
 												/>
-												{(isAdmin === true  || isAdmin === 'true' ||
-													userId === post.userId) && (
+												{(isAdmin === true ||
+                                                    isAdmin === 'true' ||
+                                                    userId === post.userId) && (
 													<ModifyPost
 														id={post._id}
 														userId={post.userId}
@@ -87,10 +90,10 @@ const Post = () => {
 														onRefresh={onRefresh}
 													/>
 												)}
-												{(userId === post.userId || 
-													isAdmin) && (
+												{(userId === post.userId ||
+                                                    isAdmin) && (
 													<DelePost
-														className='displayComponent'
+														className="displayComponent"
 														userId={post.userId}
 														id={post._id}
 														data={data}
@@ -104,7 +107,6 @@ const Post = () => {
 							</div>
 						</div>
 					</section>
-
 				</div>
 			)}
 		</div>
