@@ -72,6 +72,7 @@ const ModifyPost = ({ id, onRefresh, data, imageUrl, message, userId }) => {
 		onRefresh()
 	}, [updatePost])
 
+
 	//Modification des données sur la page
 	const modificationHandler = () => {
 		setModificationPost((modifyPost) => !modifyPost)

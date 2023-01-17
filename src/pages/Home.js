@@ -6,7 +6,7 @@ import AuthForm from '../components/auth/AuthForm'
 const Home = () => {
 	return(
 		<section>
-			<AuthForm/>
+			<AuthForm/>	
 		</section>
 	)
 }

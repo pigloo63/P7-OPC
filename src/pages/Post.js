@@ -36,6 +36,7 @@ const Post = () => {
 
 	useEffect(() => {
 		fetchHandler()
+		console.log(data[1])
 	}, [])
 
 	const onRefresh = () => {
